@@ -24,7 +24,7 @@ const Sidebar = () => {
         <div className="mt-3 mb-3 border-b-2"></div>
       </div>
       <div>
-        <SideMenu />
+        <SideMenu IsCollapsed={IsCollapsed} />
       </div>
     </div>
   );

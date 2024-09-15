@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { FaArrowLeft } from "react-icons/fa";
-import { useDispatch, useSelector } from "react-redux";
-import AxiosInstance from "../../../../axiosInstance";
-import { setWebsite } from "../../../../context/admin/websiteSlice/websiteSlice";
+import React, { useEffect } from "react";
+import SiteSettings from "./components/site/SiteSettings";
+import SEO from "./components/seo/SEO";
+import SocialMedia from "./components/socialmedia/SocialMedia";
+import { useDispatch } from "react-redux";
+import AxiosInstance from "../../../axiosInstance";
+import { setWebsite } from "../../../context/admin/websiteSlice/websiteSlice";
 
-const LogoIcon = ({ handleToggle, IsCollapsed }) => {
-  const { logoUrl } = useSelector((state) => state.website);
+const Website = () => {
   const dispatch = useDispatch();
   const handleViewData = () => {
     AxiosInstance.get("/web/get-web-info")
@@ -29,7 +30,6 @@ const LogoIcon = ({ handleToggle, IsCollapsed }) => {
             instagram: data.instagram,
             linkedin: data.linkedin,
             youtube: data.youtube,
-            logoUrl: data.logoUrl,
           })
         );
       })
@@ -41,20 +41,16 @@ const LogoIcon = ({ handleToggle, IsCollapsed }) => {
     handleViewData();
   }, []);
   return (
-    <div className="relative flex justify-center items-center">
-      <div className="w-[150px]">
-        <img src={logoUrl} alt="nirapod.xyz" />
+    <div className="grid grid-cols-2 gap-4">
+      <div>
+        <SiteSettings />
       </div>
-      <div
-        onClick={handleToggle}
-        className={`absolute top-0 -right-7 bg-white drop-shadow-md p-[0.3rem] rounded-full cursor-pointer ${
-          IsCollapsed && "rotate-180 text-xs"
-        }`}
-      >
-        <FaArrowLeft />
+      <div>
+        <SEO />
+        <SocialMedia handleViewData={handleViewData} />
       </div>
     </div>
   );
 };
 
-export default LogoIcon;
+export default Website;

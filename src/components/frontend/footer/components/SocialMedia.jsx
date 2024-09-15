@@ -1,31 +1,36 @@
 import React from "react";
 import Facebook from "../../../../assets/frontend/icon/facebook.png";
-import instagram from "../../../../assets/frontend/icon/instagram.png";
+import Instagram from "../../../../assets/frontend/icon/instagram.png";
 import LinkedIn from "../../../../assets/frontend/icon/linkedin.png";
 import Youtube from "../../../../assets/frontend/icon/youtube.png";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const SocialMedia = () => {
+  const { facebook, instagram, linkedin, youtube } = useSelector(
+    (state) => state.website
+  );
+
   const socialMediaData = [
     {
       id: 1,
       image: Facebook,
-      url: "https://www.facebook.com/",
+      url: facebook,
     },
     {
       id: 2,
-      image: instagram,
-      url: "https://www.facebook.com/",
+      image: Instagram,
+      url: instagram,
     },
     {
       id: 3,
       image: LinkedIn,
-      url: "https://www.facebook.com/",
+      url: linkedin,
     },
     {
       id: 4,
       image: Youtube,
-      url: "https://www.facebook.com/",
+      url: youtube,
     },
   ];
   return (

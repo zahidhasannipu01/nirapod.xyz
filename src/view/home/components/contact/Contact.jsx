@@ -1,13 +1,17 @@
 import React from "react";
 import Container from "../../../../utils/Container";
+import { useSelector } from "react-redux";
 
 const Contact = () => {
+  const { phone_number, alternative_phone_number } = useSelector(
+    (state) => state.website
+  );
   return (
     <div className="bg-[#dfe0e3] py-5 mt-10">
       <Container>
         <p className="text-center md:text-start text-lg md:text-2xl lg:text-2xl xl:text-2xl 2xl:text-2xl text-black/80 font-bold">
-          Can’t find your desired service? Let us know 24/7 in 01711162281,
-          01611162281.
+          Can’t find your desired service? Let us know 24/7 in {phone_number},{" "}
+          {alternative_phone_number}.
         </p>
         <div className="mt-5 flex justify-center items-center md:justify-start gap-5">
           <button className="px-6 py-2 rounded-lg bg-yellow-600 text-white hover:bg-yellow-400 duration-300">
